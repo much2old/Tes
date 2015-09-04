@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo File API</title>
+
+<!-- 
+ Im folgenden <style> Bereich
+ Stylesheet Definitionen für Schrifttyp global  (html)
+ Definitionen für container div (#container)
+ Definitionen für h1 tag Überschrift zentriert 
+ und Definition für Bereich zur Bilddarstellung (#picture_area)-->
+ 
+ <style>
+
+ html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  background: #fff;
+}
+
+#container {
+  width: 900px;
+  background: #FFF;
+  padding: 1em;
+  margin: 1em auto;
+  min-height: 600px;
+  border: 5px solid #999;
+}
+
+h1 {
+	text-align: center; margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+#picture_area {
+  margin-top: 2em;
+  width: 100%;
+  overflow-x: auto;
+}
+</style>
+</head>
+<body>
+  <div id="container">
+
+    <h1>Demo Imagedatei Reader mit HTML5 und Filesystem API</h1>
+    <div>    <!-- hier die Eingabe der Datei mittels <input> -->
+      Bilddatei auswählen: 
+      <input type="file" id="fileInput">
+    </div>
+    <div id="picture_area"></div>  <!-- anschliessend der Bereich zur Bilddarstellung -->
+
+  </div>
+
+
+
+<script>
+  window.onload = function() {  
+
+		var fileInput = document.getElementById('fileInput'); // Variable fileInput ist die Referenz auf das Objekt id="fileInput" aus dem HTML Code
+		var bildfenster = document.getElementById('picture_area'); //Variable bildfenster ist die Referenz auf das Objekt id="bildfenster" aus dem HTML Code
+
+
+		fileInput.addEventListener('change', function(e) {  // wird aktiv wenn eine Datei ausgeählt wurde (change) und 
+			var file = fileInput.files[0];  // und füllt die Variablen
+			var imageType = /image.*/;
+
+			if (file.type.match(imageType)) { // Methode prüft ob Bilddatei vorliegt
+				var reader = new FileReader();  // erzegt neuese FileReader Objekt
+
+				reader.onload = function(e) {
+					bildfenster.innerHTML = ""; // setzt den Typ dieses Bereichs
+
+					var img = new Image();
+					img.src = reader.result; // Inhalt aus Bilddatei
+
+					bildfenster.appendChild(img); // lädt img in das entspr. <div> Element (picture_area)
+				}
+
+				reader.readAsDataURL(file);	// Methode liest den Inhalt aus file
+			} else {
+				bildfenster.innerHTML = "File not supported!"  // war keine Bilddatei
+			}
+		});
+
+}
+</script>
+</body>
+</html>

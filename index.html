@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="de">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - HTML5 File API</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+
+	<body >
+
+		<div class="reveal">
+
+			<div class="slides" class="dhbw">
+           <img src="dhbw.png" style="position: absolute; top:0px; right:0px; width:200px; height: 100px;" ... /> 
+			<!--	<section data-background="dhbw.png"> -->
+				<section>
+					<h2>h1 - h3 Tags</h2><br>
+					<h2>h1- Tag  Klein und Großschreibung äöüß</h1>
+					<h3>h2- Tag  Klein und Großschreibung äöüß</h2>
+					<h4>h3- Tag  Klein und Großschreibung äöüß</h3>
+					<p>Paragraph Text  Klein und Großschreibung äöüß</p>
+					Ohne- Tag  Klein und Grossschreibung äöüß
+					<p>Alles in theme moon</p>
+				</section>
+
+
+			<section>
+					<h2>HTML5 File API</h2><br><br>
+
+<br>
+					<p>HTML5 stellt  leistungsstarke APIs für die Interaktion mit binären Daten und dem lokalen Dateisystem der Nutzer bereit. Die File APIs erlauben es Webanwendungen unter anderem, Dateien (a)synchron zu lesen, beliebige Blobs zu erstellen, Dateien an einen temporären Speicherort zu schreiben, Dateiverzeichnisse zu lesen, Dateien per Drag & Drop vom Desktop in den Browser zu verschieben und binäre Daten  hochzuladen. 
+</p>
+
+				</section>
+
+				<section>
+
+					<p>Das API lässt sich  unterteilen in:
+						
+							<p>Dateien lesen und bearbeiten </p>
+							<p>Erstellen und schreiben</p>
+							<p>Verzeichnisse und Dateisystemzugriff</p>
+						
+				</section>
+
+				<section>
+					<section id="fragments">
+
+							<h4>File API Schnittstellen zum Zugriff auf Dateien :</h4>
+							
+								<ul>
+									<p> <span class="fragment">File </span><span class="fragment"> - Stellt schreibgeschützte Informationen wie Name, Dateigröße, Mimetyp und einen Verweis auf den Dateihandle bereit.</span></p> 
+									<p> <span class="fragment">FileList </span><span class="fragment"> -  eine arrayartige Folge von File-Objekten als Rückgabe des HTML5 "input type="file" multiple" Tags</span</p>
+									<p> <span class="fragment">Blob </span><span class="fragment"> - Rohdaten einer Datei, zum Unterteilen in Bytebereiche</span</p>
+								</ul>
+							
+					</section>
+
+					<section>
+
+							<h4>Dateien lesen:</h4>
+							<div class="fragment">
+							    <ul>
+									<p>FileReader</p> 
+									<p> Bei Verwendung in Verbindung mit den obigen Datenstrukturen kann die FileReader-Schnittstelle dazu genutzt werden, eine Datei über die vertraute JavaScript-Ereignisbehandlung asynchron zu lesen. Dadurch können Sie den Fortschritt eines Lesevorgangs überwachen, Fehler ermitteln und feststellen, wann ein Ladevorgang abgeschlossen ist. Die APIs ähneln in vielerlei Hinsicht dem XMLHttpRequest-Ereignismodell.</p>
+								</ul>
+							</div>
+					</section>
+
+					<section>
+
+							<h4>Erstellen und schreiben:</h4>
+							<div class="fragment">
+							    <ul>
+									<p>BlobBuilder</p> 
+									<p> FileWriter</p>
+								</ul>
+							</div>
+					</section>
+ 					<section>
+						<h2>HTML File API</h2><br><br>
+
+							<h4>Verzeichnisse und Dateisystemzugriff:</h4>
+							<div class="fragment">
+								<ul>
+									<li>DirectoryReader</li> 
+									<li>FileEntry/DirectoryEntry </li>
+									<li>LocalFileSystem</li>
+								</ul>
+							</div>
+					</section>
+				</section>
+
+				<section>   <!-- Slide template simple -->
+					<h2>Header h2</h2>
+
+						<p>Top1</p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
+						ligula eget dolor. Aenean massa. 
+						<p>Top2 </p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
+						ligula eget dolor. Aenean massa. 
+						<p>Top3</p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+						ligula eget dolor. Aenean massa.
+					</section>
+				
+				<section>
+					   <!-- Slide template fragment -->
+					<h2>Header h2</h2>
+
+						<p class="fragment">Top1</p>
+						<p class="fragment">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
+						ligula eget dolor. Aenean massa.</p> 
+						<p class="fragment">Top2 </p>
+						<p class="fragment">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
+						ligula eget dolor. Aenean massa.</p> 
+						<p class="fragment">Top3</p>
+						<p class="fragment">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+						ligula eget dolor. Aenean massa.</p> 
+				</section>
+				
+				<section>
+							<h4>fileReader Demo HTML Part:</h4>
+					<pre><code  data-trim contenteditable>
+  <div id="container">
+
+    <h1>Demo Imagedatei Reader mit HTML5 und Filesystem API</h1>
+    <div>    <!-- hier die Eingabe der Datei mittels <input> -->
+      Bilddatei auswählen: 
+      <input type="file" id="fileInput">
+    </div>
+    <div id="picture_area"></div>  
+
+  </div>
+					</code></pre>
+				</section>
+
+
+
+				<section>
+				
+
+				
+							<h4>fileReader Demo javascript Part:</h4>
+					<pre><code  data-trim contenteditable class="stretch"> 
+window.onload = function() {
+
+var fileInput = document.getElementById('fileInput');
+var bildfenster = document.getElementById('picture_area');
+
+
+fileInput.addEventListener('change', function(e) {
+	var file = fileInput.files[0];
+	var imageType = /image.*/;
+
+	if (file.type.match(imageType)) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			bildfenster.innerHTML = "";
+			var img = new Image();
+			img.src = reader.result;
+			bildfenster.appendChild(img);
+		}
+		reader.readAsDataURL(file);	
+	} else {
+		bildfenster.innerHTML = "File not supported!"
+	}
+});
+
+}
+					</code></pre>
+				</section>
+
+
+
+
+
+
+				<section>
+				<style> #container {
+
+  background: #FFF;
+
+  margin:  auto;
+  border: 5px solid #999;
+  width: 60%; 
+  padding: 10px;
+
+}
+
+
+body {
+overflow:auto; 
+margin:0px;
+padding:0px;
+}
+
+h1 {
+	text-align: center; margin-top: 0;
+}
+
+img {
+	
+  max-width: 100%;
+  height: auto;
+}
+
+#picture_area {
+  margin: auto;
+  width: 80%;
+  height: 400px;
+
+} 
+
+</style>
+					filereader Demo:
+					
+						
+							
+							<div id="container">
+
+    
+    <div>    <!-- hier die Eingabe der Datei mittels <input> -->
+      Bilddatei auswählen: 
+      <input type="file" id="fileInput">
+    </div>
+    <div id="picture_area"></div>  <!-- anschliessend der Bereich zur Bilddarstellung -->
+
+  </div>
+						<script>
+  window.onload = function() {  
+
+		var fileInput = document.getElementById('fileInput'); // Variable fileInput ist die Referenz auf das Objekt id="fileInput" aus dem HTML Code
+		var bildfenster = document.getElementById('picture_area'); //Variable bildfenster ist die Referenz auf das Objekt id="bildfenster" aus dem HTML Code
+
+
+		fileInput.addEventListener('change', function(e) {  // wird aktiv wenn eine Datei ausgeählt wurde (change) und 
+			var file = fileInput.files[0];  // und füllt die Variablen
+			var imageType = /image.*/;
+
+			if (file.type.match(imageType)) { // Methode prüft ob Bilddatei vorliegt
+				var reader = new FileReader();  // erzegt neuese FileReader Objekt
+
+				reader.onload = function(e) {
+					bildfenster.innerHTML = ""; // setzt den Typ dieses Bereichs
+
+					var img = new Image();
+					img.src = reader.result; // Inhalt aus Bilddatei
+
+					bildfenster.appendChild(img); // lädt img in das entspr. 'div' Element (picture_area)
+				}
+
+				reader.readAsDataURL(file);	// Methode liest den Inhalt aus file
+			} else {
+				bildfenster.innerHTML = "File not supported!"  // war keine Bilddatei
+			}
+		});
+
+}
+</script>
+						</p>
+						
+				</section>
+
+
+
+
+
+
+
+<!
+				</div>		<!--  End of div class slides -->
+
+		</div>				<!--  End of div class reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				history: true,
+				transition: 'fade',
+				dependencies: [
+					{ src: 'lib/js/classList.js' },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
